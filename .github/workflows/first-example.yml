@@ -10,11 +10,15 @@ jobs:
           uses: actions/checkout@v6
 
         - name: List and Read file
-          run: echo "My first Github Actions Job"
+          run: |
+               echo "My first Github Actions Job"
                ls -ltra
                cat README.md
+               
         - name: Generate ASCII Artwork
-          run: cowsay -f dragon "Run for cover, I am a DRAGON..." >> dragon.txt
+          run: |
+               sudo apt install cowsay -y
+               cowsay -f dragon "Run for cover, I am a DRAGON..." >> dragon.txt
 
         # - name: List files
         #   run: ls
