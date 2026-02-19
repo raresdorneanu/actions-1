@@ -1,4 +1,4 @@
-name: My First Workflow
+name: Generate ASCII Artwork
 
 on: push
 
@@ -8,15 +8,22 @@ jobs:
         steps: 
         - name: Checkout Repo
           uses: actions/checkout@v6
-
-        - name: List and Read file
-          run: |
-               echo "My first Github Actions Job"
-               ls -ltra
-               cat README.md
                
-        - name: Generate ASCII Artwork
+        - name: Install Cowsay
+          run: sudo apt install cowsay -y
+        
+        - name: Execute Cowsay
           run: cowsay -f dragon "Run for cover, I am a DRAGON..." >> dragon.txt
+
+        - name: Test File Exists
+          run: grep -i "dragon" dragon.txt
+
+        - name: Read File
+          run: cat dragon.txt
+
+        - name: List Repo Files
+          run: ls -ltra
+          
 
         # - name: List files
         #   run: ls
